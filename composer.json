@@ -11,7 +11,7 @@
     "require": {
         "php": "^8.2",
         "filament/filament": "^3.3",
-        "laravel/framework": "^11.31",
+        "laravel/framework": "^11",
         "laravel/tinker": "^2.9",
         "nativephp/electron": "^0.9.0",
         "nativephp/laravel": "^1.0"
