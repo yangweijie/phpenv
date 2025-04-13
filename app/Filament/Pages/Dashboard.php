@@ -2,18 +2,15 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\DashboardOverview;
 use App\Models\Service;
-use App\Models\PhpVersion;
-use App\Models\Website;
-use Filament\Pages\Page;
+use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Actions\Action;
 
-class Dashboard extends Page
+class Dashboard extends BaseDashboard
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
-    protected static string $view = 'filament.pages.dashboard';
-    
     protected static ?int $navigationSort = 0;
 
     protected function getHeaderActions(): array
@@ -28,24 +25,16 @@ class Dashboard extends Page
                     foreach ($services as $service) {
                         $service->checkStatus();
                     }
-                    
+
                     $this->notify('success', '状态已刷新');
                 }),
         ];
     }
-    
-    public function getServices()
+
+    public function getWidgets(): array
     {
-        return Service::all();
-    }
-    
-    public function getActivePhpVersion()
-    {
-        return PhpVersion::where('is_active', true)->first();
-    }
-    
-    public function getWebsites()
-    {
-        return Website::all();
+        return [
+            DashboardOverview::class,
+        ];
     }
 }
